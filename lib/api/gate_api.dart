@@ -7,7 +7,8 @@ class ApiConfig {
   const ApiConfig._();
   static const baseUrl = String.fromEnvironment(
     'API_BASE_URL',
-    defaultValue: 'http://localhost:5067',
+    defaultValue:
+        'https://sylver-screen-api-abfgd9bshkhybnd7.westeurope-01.azurewebsites.net',
   );
 }
 
@@ -103,6 +104,9 @@ class GateScanResult {
     this.hallName,
     this.customerName,
     this.totalAmount = 0,
+    this.ticketType,
+    this.ticketAmount,
+    this.ticketCurrency,
     this.projectionStart,
     this.projectionEnd,
     this.firstCheckedInDate,
@@ -115,6 +119,9 @@ class GateScanResult {
   final String? hallName;
   final String? customerName;
   final double totalAmount;
+  final String? ticketType;
+  final double? ticketAmount;
+  final String? ticketCurrency;
   final DateTime? projectionStart;
   final DateTime? projectionEnd;
   final DateTime? firstCheckedInDate;
@@ -128,6 +135,9 @@ class GateScanResult {
     hallName: json['hallName'] as String?,
     customerName: json['customerName'] as String?,
     totalAmount: (json['totalAmount'] as num?)?.toDouble() ?? 0,
+    ticketType: json['ticketType'] as String?,
+    ticketAmount: (json['ticketAmount'] as num?)?.toDouble(),
+    ticketCurrency: json['ticketCurrency'] as String?,
     projectionStart: json['projectionDate'] == null
         ? null
         : DateTime.parse(json['projectionDate'] as String).toLocal(),

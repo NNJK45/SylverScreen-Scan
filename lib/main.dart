@@ -902,7 +902,11 @@ class GateScanResultScreen extends StatelessWidget {
                       const SizedBox(height: 3),
                       Text(result.customerName ?? 'Participant non identifié', maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: ink)),
                       const SizedBox(height: 12),
-                      Text('Montant total : ${_formatXaf(result.totalAmount)}', style: const TextStyle(color: ink, fontWeight: FontWeight.w800)),
+                      Text('Type de billet : ${result.ticketType ?? 'Non renseigné'}', style: const TextStyle(color: ink, fontWeight: FontWeight.w700)),
+                      const SizedBox(height: 5),
+                      Text(result.ticketAmount == null ? 'Prix du billet : non renseigné' : 'Prix du billet : ${result.ticketCurrency == 'XAF' ? _formatXaf(result.ticketAmount!) : '${result.ticketAmount} ${result.ticketCurrency ?? ''}'}', style: const TextStyle(color: ink, fontWeight: FontWeight.w800)),
+                      const SizedBox(height: 5),
+                      Text('Total réservation : ${_formatXaf(result.totalAmount)}', style: const TextStyle(color: muted, fontSize: 12)),
                       const SizedBox(height: 13),
                       Row(children: [
                         Expanded(child: _ResultTime(label: 'Début', value: result.projectionStart ?? projection.startsAt)),
